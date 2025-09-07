@@ -24,9 +24,11 @@ class ApiPaymentController extends Controller
 
             $data['user_id'] = Auth::id();
 
-            // Hitung change manual tanpa if-else
-            $change = $data['amount'] - $order->total_price;
-            $data['change'] = $change > 0 ? $change : 0;
+            if ($data['method'] === 'cash' && $data['amount'] > $order->total_price) {
+                $data['change'] = $data['amount'] - $order->total_price;
+            } else {
+                $data['change'] = 0;
+            }
 
             if (!isset($data['status'])) {
                 $data['status'] = 'unpaid';

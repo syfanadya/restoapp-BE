@@ -4,21 +4,24 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiAuthController;
 use App\Http\Controllers\ApiFoodController;
+use App\Http\Controllers\ApiFloorController;
 use App\Http\Controllers\ApiOrderController;
 use App\Http\Controllers\ApiTableController;
-use App\Http\Controllers\ApiOrderItemController;
 use App\Http\Controllers\ApiPaymentController;
+use App\Http\Controllers\ApiOrderItemController;
 
 Route::post('login', [ApiAuthController::class, 'login']);
 Route::post('logout', [ApiAuthController::class, 'logout'])->middleware('auth:sanctum');
 Route::get('user', [ApiAuthController::class, 'fetch'])->middleware('auth:sanctum');
+
+Route::get('floor', [ApiFloorController::class, 'fetch']);
 
 Route::get('food', [ApiFoodController::class, 'fetch'])->middleware('auth:sanctum');
 Route::post('food', [ApiFoodController::class, 'create'])->middleware('auth:sanctum');
 Route::put('food/{id}', [ApiFoodController::class, 'update'])->middleware('auth:sanctum');
 Route::delete('food/{id}', [ApiFoodController::class, 'destroy'])->middleware('auth:sanctum');
 
-Route::get('table', [ApiTableController::class, 'fetch'])->middleware('auth:sanctum');
+Route::get('table', [ApiTableController::class, 'fetch']);
 Route::put('table/{id}', [ApiTableController::class, 'update'])->middleware('auth:sanctum');
 
 Route::get('order', [ApiOrderController::class, 'fetch'])->middleware('auth:sanctum');

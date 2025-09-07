@@ -13,7 +13,7 @@ class ApiTableController extends Controller
     public function fetch(Request $request)
     {
         $floorId = $request->input('floor_id'); // filter berdasarkan floor_id
-        $limit = $request->input('limit', 10);
+        $limit = $request->input('limit', 100);
 
         $tableQuery = Table::query();
 
