@@ -18,7 +18,7 @@ class ApiFoodController extends Controller
     {
         $id = $request->input('id');
         $name = $request->input('name');
-        $limit = $request->input('limit', 10);
+        $limit = $request->input('limit', 100);
 
         $foodQuery = Food::query();
 
